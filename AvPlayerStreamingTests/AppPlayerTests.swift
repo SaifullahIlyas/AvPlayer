@@ -62,6 +62,23 @@ class AppPlayerTests: XCTestCase {
         }
         
     }
+    func testGetPlayerDuration() throws {
+        guard let player = setUpPlayer() else {
+            return
+        }
+        let exp = expectation(description: "Get Media Duration")
+        
+        let result =   XCTWaiter.wait(for: [exp], timeout: 10)
+        if result == XCTWaiter.Result.timedOut {
+            XCTAssertNotNil(player.getMediaDuration())
+            XCTAssertFalse(player.getMediaDuration()?.isNaN ?? false)
+           
+        }
+        
+        
+       
+        
+    }
     func testPlayerTimeObsever() {
         guard let player = setUpPlayer() else {
             return
@@ -83,7 +100,7 @@ class AppPlayerTests: XCTestCase {
         
         
     }
-
+  
     func testPlayerSeek() throws {
         guard  let player = setUpPlayer() else {
             return
@@ -105,6 +122,7 @@ class AppPlayerTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
     func setUpPlayer()->AppPlayer? {
         let player = AppPlayer()
         player.setUpPlayerWithUrl(url: URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8")!, into: UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200)))

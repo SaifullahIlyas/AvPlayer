@@ -12,11 +12,12 @@ enum AppPlayerState {
     case idle
     case playing
     case pause
-    case stop
+    case finishedPlaying
 }
 class AppPlayer {
     var  player : AVPlayer?
     var timerChangeValue : ((Float)->Void)?
+    var didFinishedPlaying :(()->Void)?
     var playerState : AppPlayerState = .idle
     /*Setup/prepare player */
     func setUpPlayerWithUrl(url: URL, into view : UIView){
@@ -27,7 +28,7 @@ class AppPlayer {
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = view.frame
         view.layer.addSublayer(playerLayer)
-       // NotificationCenter.default.addObserver(self, selector: #selector(finishedPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+       NotificationCenter.default.addObserver(self, selector: #selector(finishedPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     //
     }
     /*Time Observer to monintor continues playing time of player*/
@@ -42,10 +43,16 @@ class AppPlayer {
             guard currentItem.status == .readyToPlay else {
                 return
             }
-            self?.timerChangeValue?(currentItem.currentTime().seconds.isNaN ? 0 : Float(currentItem.duration.seconds))
+            self?.timerChangeValue?(currentItem.currentTime().seconds.isNaN ? 0 : Float(currentItem.currentTime().seconds))
             
         })
     }
+    @objc func finishedPlaying() {
+        self.playerState = .finishedPlaying
+        didFinishedPlaying?()
+       
+    }
+    
     /* Play only if player is Not playing */
   func playIfNeeded() {
     guard let player = player else {
@@ -69,6 +76,19 @@ class AppPlayer {
     /*time scale is in 1000 */
     func seekTo( time : Int64) {
         player?.seek(to: CMTimeMake(value: time, timescale: 1000))
+    }
+    func getMediaDuration() -> Double? {
+        guard let player = player else {
+            return nil
+        }
+        guard let currentItem = player.currentItem else {
+            return nil
+        }
+       return currentItem.duration.seconds
+    }
+    func reset() {
+        player?.seek(to: CMTime(value: 0, timescale: CMTimeScale(NSEC_PER_SEC)))
+        self.pauseIfNeeded()
     }
 }
 

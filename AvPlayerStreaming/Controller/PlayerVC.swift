@@ -8,6 +8,9 @@
 import UIKit
 
 class PlayerVC: BaseVC {
+    lazy var appPlayer : AppPlayer = {
+        return AppPlayer()
+    }()
     lazy var playerView : UIView = {
        let view = UIView()
        view.backgroundColor = .black
@@ -84,10 +87,43 @@ class PlayerVC: BaseVC {
         
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        appPlayer.setUpPlayerWithUrl(url: URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8")!, into: playerView)
+        appPlayer.addPlayerTimeChangeObserver()
+        appPlayer.timerChangeValue = {[weak self ] value in
+            self?.seekbar.minimumValue = 0
+            if let duration = self?.appPlayer.getMediaDuration() {
+                self?.seekbar.maximumValue = Float(duration.isNaN ? 0 : duration)
+            }
+            self?.seekbar.value = value
+        }
+        appPlayer.playIfNeeded()
+        playPauseBtn.setTitle(Resources.strings.titlePause, for: .normal)
+        appPlayer.didFinishedPlaying = {[weak self] in
+            self?.seekbar.value = 0
+            self?.appPlayer.reset()
+            self?.playPauseBtn.setTitle(Resources.strings.titlePlay, for: .normal)
+        }
+        
+    }
     @objc func togglePlayPause(_ sender : Any) {
+        if appPlayer.playerState == .playing {
+            appPlayer.pauseIfNeeded()
+            playPauseBtn.setTitle(Resources.strings.titlePlay, for: .normal)
+        }
+        else {
+            appPlayer.playIfNeeded()
+            playPauseBtn.setTitle(Resources.strings.titlePause, for: .normal)
+            
+        }
+        
     }
     @objc func toggleAudioSubtitle(_ sender : Any) {}
-    @objc func seekBarChange(_ sender : UISlider){}
+    @objc func seekBarChange(_ sender : UISlider){
+        //in seconds
+        appPlayer.seekTo(time: Int64(sender.value * 1000))
+    }
     /*
     // MARK: - Navigation
 
