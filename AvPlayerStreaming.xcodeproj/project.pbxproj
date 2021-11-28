@@ -15,6 +15,7 @@
 		2B8A739C2753486A004A6BD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B8A739A2753486A004A6BD9 /* LaunchScreen.storyboard */; };
 		2B8A73A72753486A004A6BD9 /* AvPlayerStreamingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A73A62753486A004A6BD9 /* AvPlayerStreamingTests.swift */; };
 		2B8A73B22753486A004A6BD9 /* AvPlayerStreamingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A73B12753486A004A6BD9 /* AvPlayerStreamingUITests.swift */; };
+		2B8A73C927534C61004A6BD9 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A73C827534C61004A6BD9 /* Resources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2B8A73AD2753486A004A6BD9 /* AvPlayerStreamingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvPlayerStreamingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B8A73B12753486A004A6BD9 /* AvPlayerStreamingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvPlayerStreamingUITests.swift; sourceTree = "<group>"; };
 		2B8A73B32753486A004A6BD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B8A73C827534C61004A6BD9 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +101,11 @@
 		2B8A738E27534869004A6BD9 /* AvPlayerStreaming */ = {
 			isa = PBXGroup;
 			children = (
-				2B8A738F27534869004A6BD9 /* AppDelegate.swift */,
-				2B8A739127534869004A6BD9 /* SceneDelegate.swift */,
-				2B8A739327534869004A6BD9 /* ViewController.swift */,
-				2B8A739527534869004A6BD9 /* Main.storyboard */,
-				2B8A73982753486A004A6BD9 /* Assets.xcassets */,
-				2B8A739A2753486A004A6BD9 /* LaunchScreen.storyboard */,
+				2B8A73D027534D30004A6BD9 /* AppLifeCycle */,
+				2B8A73C727534C35004A6BD9 /* Controller */,
+				2B8A73C627534C2D004A6BD9 /* View */,
+				2B8A73C527534C28004A6BD9 /* Model */,
+				2B8A73CE27534CFF004A6BD9 /* Others */,
 				2B8A739D2753486A004A6BD9 /* Info.plist */,
 			);
 			path = AvPlayerStreaming;
@@ -126,6 +127,72 @@
 				2B8A73B32753486A004A6BD9 /* Info.plist */,
 			);
 			path = AvPlayerStreamingUITests;
+			sourceTree = "<group>";
+		};
+		2B8A73C527534C28004A6BD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2B8A73C627534C2D004A6BD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2B8A73C727534C35004A6BD9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A739327534869004A6BD9 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2B8A73CD27534CEB004A6BD9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		2B8A73CE27534CFF004A6BD9 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A73D227534D9B004A6BD9 /* StoryBoards */,
+				2B8A73D127534D84004A6BD9 /* Resources */,
+				2B8A73CD27534CEB004A6BD9 /* Protocols */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		2B8A73D027534D30004A6BD9 /* AppLifeCycle */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A738F27534869004A6BD9 /* AppDelegate.swift */,
+				2B8A739127534869004A6BD9 /* SceneDelegate.swift */,
+			);
+			path = AppLifeCycle;
+			sourceTree = "<group>";
+		};
+		2B8A73D127534D84004A6BD9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A73C827534C61004A6BD9 /* Resources.swift */,
+				2B8A73982753486A004A6BD9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2B8A73D227534D9B004A6BD9 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A739527534869004A6BD9 /* Main.storyboard */,
+				2B8A739A2753486A004A6BD9 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +328,7 @@
 				2B8A739427534869004A6BD9 /* ViewController.swift in Sources */,
 				2B8A739027534869004A6BD9 /* AppDelegate.swift in Sources */,
 				2B8A739227534869004A6BD9 /* SceneDelegate.swift in Sources */,
+				2B8A73C927534C61004A6BD9 /* Resources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
