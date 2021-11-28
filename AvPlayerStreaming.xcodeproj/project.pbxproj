@@ -19,6 +19,7 @@
 		2B8A73E727535038004A6BD9 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A73E627535038004A6BD9 /* PlayerVC.swift */; };
 		2B8A73F2275357C6004A6BD9 /* PlayerVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A73E127534F35004A6BD9 /* PlayerVCTests.swift */; };
 		2B8A73FA27536E07004A6BD9 /* AppPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A73F927536E07004A6BD9 /* AppPlayerTests.swift */; };
+		2B8A740027536FFD004A6BD9 /* AppPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A73FF27536FFC004A6BD9 /* AppPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		2B8A73E127534F35004A6BD9 /* PlayerVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVCTests.swift; sourceTree = "<group>"; };
 		2B8A73E627535038004A6BD9 /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		2B8A73F927536E07004A6BD9 /* AppPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPlayerTests.swift; sourceTree = "<group>"; };
+		2B8A73FF27536FFC004A6BD9 /* AppPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 		2B8A73CE27534CFF004A6BD9 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				2B8A73FE27536FE8004A6BD9 /* Managers */,
 				2B8A73D227534D9B004A6BD9 /* StoryBoards */,
 				2B8A73D127534D84004A6BD9 /* Resources */,
 				2B8A73CD27534CEB004A6BD9 /* Protocols */,
@@ -202,6 +205,14 @@
 				2B8A739A2753486A004A6BD9 /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		2B8A73FE27536FE8004A6BD9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2B8A73FF27536FFC004A6BD9 /* AppPlayer.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,6 +347,7 @@
 			files = (
 				2B8A739427534869004A6BD9 /* BaseVC.swift in Sources */,
 				2B8A739027534869004A6BD9 /* AppDelegate.swift in Sources */,
+				2B8A740027536FFD004A6BD9 /* AppPlayer.swift in Sources */,
 				2B8A739227534869004A6BD9 /* SceneDelegate.swift in Sources */,
 				2B8A73C927534C61004A6BD9 /* Resources.swift in Sources */,
 				2B8A73E727535038004A6BD9 /* PlayerVC.swift in Sources */,
