@@ -6,8 +6,6 @@
 //
 
 import XCTest
-@testable import AvPlayerStreaming
-
 class AvPlayerStreamingTests: XCTestCase {
 
     override func setUpWithError() throws {

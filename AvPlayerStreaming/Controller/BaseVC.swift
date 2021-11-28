@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BaseVC.swift
 //  AvPlayerStreaming
 //
 //  Created by SAIF ULLAH on 28/11/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BaseVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
