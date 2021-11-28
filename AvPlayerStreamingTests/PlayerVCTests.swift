@@ -35,6 +35,20 @@ class PlayerVCTests: XCTestCase {
     
         
     }
+    func testPlayerViewFrame()throws  {
+        let sut = makeSUT()
+        sut.playerView.setNeedsLayout()
+        sut.playerView.layoutIfNeeded()
+        XCTAssertEqual(sut.view.frame.size, sut.playerView.frame.size)
+    }
+    func testControlViewFrame() {
+        let sut = makeSUT()
+        sut.view.setNeedsLayout()
+        sut.view.layoutIfNeeded()
+        let expectedSize  = CGSize(width: sut.view.frame.width, height: sut.view.frame.size.height*0.25).roundToNextValue
+        XCTAssertEqual(sut.controlView.frame.size.roundToNextValue, expectedSize)
+    }
+    
     func checkIfViewIsInSuperview(superview pVw : UIView, subview sVw : UIView) -> Bool{
         return sVw.isDescendant(of: pVw)
     }
@@ -52,4 +66,10 @@ class PlayerVCTests: XCTestCase {
     }
     
 
+}
+
+extension CGSize {
+    var roundToNextValue : CGSize {
+        return CGSize(width: Darwin.floor(self.width), height: Darwin.floor(self.height))
+    }
 }

@@ -11,5 +11,7 @@ class Resources  {
     static let strings  = StringResources()
 }
 class StringResources {
- 
+ let titlePlay = "Play"
+ let titlePause = "Pause"
+ let titleAudioSubTitle = "Audio/SubTitle"
 }
