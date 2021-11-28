@@ -28,12 +28,17 @@ class PlayerVCTests: XCTestCase {
     func testSetUpVC() throws {
       let sut = makeSUT()
      XCTAssert(checkIfViewIsInSuperview(superview: sut.view, subview: sut.playerView))
-        XCTAssert(checkIfViewIsInSuperview(superview: sut.view, subview: sut.controlView))
-////        XCTAssertEqual(CGRect.contains(<#T##self: CGRect##CGRect#>), <#T##expression2: Equatable##Equatable#>)
+     XCTAssert(checkIfViewIsInSuperview(superview: sut.view, subview: sut.controlView))
+     XCTAssert(checkIfViewIsInSuperview(superview: sut.controlView, subview: sut.playPauseBtn))
+     XCTAssert(checkIfViewIsInSuperview(superview: sut.controlView, subview: sut.audioSubTitleBtn))
+     XCTAssert(checkIfViewIsInSuperview(superview: sut.controlView, subview: sut.seekbar))
+    
+        
     }
     func checkIfViewIsInSuperview(superview pVw : UIView, subview sVw : UIView) -> Bool{
         return sVw.isDescendant(of: pVw)
     }
+  
     
    private func makeSUT() -> PlayerVC {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
