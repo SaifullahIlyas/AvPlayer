@@ -119,7 +119,14 @@ class PlayerVC: BaseVC {
         }
         
     }
-    @objc func toggleAudioSubtitle(_ sender : Any) {}
+    @objc func toggleAudioSubtitle(_ sender : Any) {
+        guard let subTitleVc = storyboard?.instantiateViewController(identifier: "SubTitleVC") as? SubTitleVC else {
+            return
+        }
+        subTitleVc.appPlayer = appPlayer
+        present(subTitleVc, animated: true, completion: nil)
+        
+    }
     @objc func seekBarChange(_ sender : UISlider){
         //in seconds
         appPlayer.seekTo(time: Int64(sender.value * 1000))
