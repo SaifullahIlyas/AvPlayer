@@ -89,7 +89,7 @@ class PlayerVC: BaseVC {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        appPlayer.setUpPlayerWithUrl(url: URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8")!, into: playerView)
+        appPlayer.setUpPlayerWithUrl(url: URL(string: Resources.strings.videoUrl)!, into: playerView)
         appPlayer.addPlayerTimeChangeObserver()
         appPlayer.timerChangeValue = {[weak self ] value in
             self?.seekbar.minimumValue = 0
@@ -120,7 +120,7 @@ class PlayerVC: BaseVC {
         
     }
     @objc func toggleAudioSubtitle(_ sender : Any) {
-        guard let subTitleVc = storyboard?.instantiateViewController(identifier: "SubTitleVC") as? SubTitleVC else {
+        guard let subTitleVc = storyboard?.instantiateViewController(identifier: StoryBoardIdentifier.subTitleVC.description) as? SubTitleVC else {
             return
         }
         subTitleVc.appPlayer = appPlayer

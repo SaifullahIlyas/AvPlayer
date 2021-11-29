@@ -9,7 +9,7 @@ import Foundation
 import  AVFoundation
 
 class TrackType {
-    var sectionType : SectionType? = nil
+    var sectionType : SubTitleVCTableSectionType? = nil
     var secTionGroup   : AVMediaSelectionGroup? = nil
     var items : [TrackDetail]? = nil
     
@@ -29,7 +29,7 @@ class TrackDetail {
     
     
 }
-enum SectionType : CaseIterable{
+enum SubTitleVCTableSectionType : CaseIterable{
     case Audio
     case subTitle
     var title : String {

@@ -13,34 +13,32 @@ class SubTitleVC: UITableViewController,ThreadType {
     private lazy var dataSource : [TrackType] = {
      prePareDataSource()
     }()
+    private lazy var doneBtn : UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: self.view.frame.width-100, y: 25, width: 100, height: 30)
+        button.setTitle(Resources.strings.titleDone, for: .normal)
+        button.addTarget(self, action: #selector(doneAction), for: .touchUpInside)
+        button.layer.cornerRadius = 5
+        button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2)
+       // button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .black
         tableView.reloadData()
+        self.view.addSubview(doneBtn)
+        self.view.bringSubviewToFront(doneBtn)
         // Do any additional setup after loading the view.
     }
-    private func prePareDataSource()->[TrackType] {
-        guard let plyerItem = appPlayer?.player?.currentItem else {
-            return []
-        }
-        let asset = plyerItem.asset
-        let data = asset.availableMediaCharacteristicsWithMediaSelectionOptions.compactMap({ value -> TrackType in
-            let data = TrackType()
-            data.sectionType = value == .audible ? .Audio : .subTitle
-            if let group = asset.mediaSelectionGroup(forMediaCharacteristic: value){
-                data.secTionGroup = group
-                data.items = group.options.compactMap({
-                    TrackDetail(isSeleced: plyerItem.currentMediaSelection.selectedMediaOption(in: group) == $0, disPlayName: $0.displayName, option: $0)
-                })
-            }
-            return data
-        })
-        return data
+    @objc func doneAction() {
+        self.dismiss(animated: true, completion: nil)
     }
+   
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return SectionType.allCases.count
+        return SubTitleVCTableSectionType.allCases.count
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].items?.count ?? 0
@@ -78,4 +76,24 @@ class SubTitleVC: UITableViewController,ThreadType {
      }
      */
     
+}
+extension SubTitleVC {
+    private func prePareDataSource()->[TrackType] {
+        guard let plyerItem = appPlayer?.player?.currentItem else {
+            return []
+        }
+        let asset = plyerItem.asset
+        let data = asset.availableMediaCharacteristicsWithMediaSelectionOptions.compactMap({ value -> TrackType in
+            let data = TrackType()
+            data.sectionType = value == .audible ? .Audio : .subTitle
+            if let group = asset.mediaSelectionGroup(forMediaCharacteristic: value){
+                data.secTionGroup = group
+                data.items = group.options.compactMap({
+                    TrackDetail(isSeleced: plyerItem.currentMediaSelection.selectedMediaOption(in: group) == $0, disPlayName: $0.displayName, option: $0)
+                })
+            }
+            return data
+        })
+        return data
+    }
 }
