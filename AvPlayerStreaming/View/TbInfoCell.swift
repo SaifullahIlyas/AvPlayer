@@ -21,7 +21,7 @@ class TbInfoCell: UITableViewCell {
     }
     func update(text : String? , isSelected : Bool) {
         lbl?.text = text
-        lbl?.textColor = isSelected == true ? .blue : .white
+        lbl?.textColor = isSelected == true ? #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1) : .white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
