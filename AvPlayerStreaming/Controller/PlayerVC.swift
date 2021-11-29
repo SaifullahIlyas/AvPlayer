@@ -47,6 +47,12 @@ class PlayerVC: BaseVC {
        return slider
         
     }()
+    lazy var loader : UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .medium)
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        activity.color = .white
+        return activity
+    }()
     lazy var playerViewConstraints  : [NSLayoutConstraint] = {
        [NSLayoutConstraint(item: self.playerView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0),NSLayoutConstraint(item: self.playerView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0),NSLayoutConstraint(item: self.playerView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0),NSLayoutConstraint(item: self.playerView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)]
     }()
@@ -63,6 +69,10 @@ class PlayerVC: BaseVC {
     lazy var seekBarConstraint  : [NSLayoutConstraint] = {
         [NSLayoutConstraint(item: seekbar, attribute: .leading, relatedBy: .equal, toItem: controlView, attribute: .leading, multiplier: 1, constant: 0),NSLayoutConstraint(item: seekbar, attribute: .top, relatedBy: .equal, toItem: controlView, attribute: .top, multiplier: 1, constant: 10),NSLayoutConstraint(item: seekbar, attribute: .trailing, relatedBy: .equal, toItem: controlView, attribute: .trailing, multiplier: 1, constant: 0)]
     }()
+    lazy var loaderConstraint : [NSLayoutConstraint] = {
+        [NSLayoutConstraint.init(item: loader, attribute: .centerX, relatedBy: .equal, toItem:controlView, attribute: .centerX, multiplier: 0.5, constant: 0), NSLayoutConstraint.init(item: loader, attribute: .centerY, relatedBy: .equal, toItem: controlView, attribute: .centerY, multiplier: 1, constant: 0)]
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +87,7 @@ class PlayerVC: BaseVC {
         controlView.addSubview(playPauseBtn)
         controlView.addSubview(audioSubTitleBtn)
         controlView.addSubview(seekbar)
+        controlView.addSubview(loader)
     }
     func addConstrains (){
         NSLayoutConstraint.activate(playerViewConstraints)
@@ -84,6 +95,7 @@ class PlayerVC: BaseVC {
         NSLayoutConstraint.activate(togglePlayPauseConstraint)
         NSLayoutConstraint.activate(subTitleBtnConstraint)
         NSLayoutConstraint.activate(seekBarConstraint)
+        NSLayoutConstraint.activate(loaderConstraint)
         
         
     }
@@ -104,6 +116,9 @@ class PlayerVC: BaseVC {
             self?.seekbar.value = 0
             self?.appPlayer.reset()
             self?.playPauseBtn.setTitle(Resources.strings.titlePlay, for: .normal)
+        }
+        appPlayer.listenToPlayerState = {[weak self] state in
+            (state == .buffering || state == .unkown) ? self?.loader.startAnimating() : self?.loader.stopAnimating()
         }
         
     }

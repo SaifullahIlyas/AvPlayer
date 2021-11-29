@@ -60,7 +60,7 @@ class AppPlayerTests: XCTestCase {
         waitForExpectations(timeout: 10){ error in
             XCTAssertNil(error)
         }
-        
+
     }
     func testGetPlayerDuration() throws {
         guard let player = setUpPlayer() else {
@@ -116,10 +116,18 @@ class AppPlayerTests: XCTestCase {
             
         }
     }
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testPlayerState() throws {
+        guard let player = setUpPlayer() else {
+            return
+        }
+        let exp = expectation(description: "Player State test")
+        player.listenToPlayerState = { value in
+            if (value != .idle) {
+                exp.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 10){
+            XCTAssertNil($0)
         }
     }
     

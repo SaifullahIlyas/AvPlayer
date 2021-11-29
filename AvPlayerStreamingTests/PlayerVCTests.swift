@@ -32,6 +32,7 @@ class PlayerVCTests: XCTestCase {
      XCTAssert(checkIfViewIsInSuperview(superview: sut.controlView, subview: sut.playPauseBtn))
      XCTAssert(checkIfViewIsInSuperview(superview: sut.controlView, subview: sut.audioSubTitleBtn))
      XCTAssert(checkIfViewIsInSuperview(superview: sut.controlView, subview: sut.seekbar))
+     XCTAssert(checkIfViewIsInSuperview(superview: sut.controlView, subview: sut.loader))
     
         
     }

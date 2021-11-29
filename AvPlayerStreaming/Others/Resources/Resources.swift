@@ -16,6 +16,10 @@ class StringResources {
  let titleAudioSubTitle = "Audio/SubTitle"
  let titleDone = "Done"
  let videoUrl = "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8"
+let stringNotificationPlaybackBufferEmpty = "playbackBufferEmpty"
+let   stringNotificationPlaybackLikelyToKeepUp = "playbackLikelyToKeepUp"
+let   stringNotificationPlaybackBufferFull = "playbackBufferFull"
+
 }
 
 enum StoryBoardIdentifier : CustomStringConvertible {
