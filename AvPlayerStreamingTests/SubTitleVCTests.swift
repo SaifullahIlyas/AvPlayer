@@ -47,7 +47,11 @@ class SubTitleVCTests: XCTestCase {
     private func makeSUT() -> SubTitleVC {
              let storyboard = UIStoryboard(name: "Main", bundle: nil)
              let sut = storyboard.instantiateViewController(identifier: "SubTitleVC") as! SubTitleVC
+             let player = AppPlayer()
+        player.setUpPlayerWithUrl(url: URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8")!, into: UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200)))
+             sut.appPlayer = player
              sut.loadViewIfNeeded()
+            
              return sut
          }
     func testPerformanceExample() throws {
